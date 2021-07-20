@@ -9,11 +9,11 @@
  * `./src/main.prod.js` using webpack. This gives us some performance wins.
  */
 import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import path from 'path';
 import { app, BrowserWindow, shell } from 'electron';
-import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import { autoUpdater } from 'electron-updater';
+import path from 'path';
+import 'regenerator-runtime/runtime';
 import MenuBuilder from './menu';
 
 export default class AppUpdater {
@@ -75,9 +75,13 @@ const createWindow = async () => {
     webPreferences: {
       nodeIntegration: true,
     },
+    transparent: true,
+    // frame: false,
   });
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
+
+  mainWindow.webContents.openDevTools({ mode: 'undocked' });
 
   // @TODO: Use 'ready-to-show' event
   //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event

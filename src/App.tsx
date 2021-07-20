@@ -1,50 +1,44 @@
+import Excalidraw from '@excalidraw/excalidraw';
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import icon from '../assets/icon.svg';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.global.css';
 
-const Hello = () => {
+function Main() {
   return (
-    <div>
-      <div className="Hello">
-        <img width="200px" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 10000,
+        minHeight: '300px',
+        minWidth: '300px',
+      }}
+    >
+      <Excalidraw
+        initialData={{
+          appState: {
+            viewBackgroundColor: 'transparent',
+          },
+        }}
+        name="hello world"
+        UIOptions={{
+          canvasActions: {
+            changeViewBackgroundColor: false,
+          },
+        }}
+      />
     </div>
   );
-};
+}
 
 export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={Hello} />
+        <Route path="/" component={Main} />
       </Switch>
     </Router>
   );
